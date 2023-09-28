@@ -1,24 +1,24 @@
-import os from 'os';
+import fs from 'fs/promises';
 import path from 'path';
 
 import { type BunPlugin } from 'bun';
 import postcss, { type AcceptedPlugin } from 'postcss';
 
 type PostCSSPluginOptions = {
+  buildDir: string;
   plugins?: AcceptedPlugin[];
 };
 
-const postcssPlugin = (options?: PostCSSPluginOptions): BunPlugin => ({
+const postcssPlugin = (options: PostCSSPluginOptions): BunPlugin => ({
   name: 'bun-plugin-postcss',
   setup: (build) => {
-    const tmpDir = os.tmpdir();
     build.onLoad({ filter: /\.css$/ }, async (args) => {
-      const processor = postcss(options?.plugins);
-      const outfile = path.resolve(tmpDir, path.basename(args.path));
-      const result = await processor.process(args.path, { from: args.path, to: outfile });
+      const processor = postcss(options.plugins);
+      const outfile = path.resolve(options.buildDir, path.basename(args.path));
+      const css = await fs.readFile(args.path, 'utf-8');
+      const result = await processor.process(css, { from: args.path, to: outfile });
       return {
-        contents: result.css,
-        loader: 'file'
+        contents: result.css
       };
     });
   }

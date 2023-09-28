@@ -1,9 +1,10 @@
+// @ts-check
+
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: ['eslint:recommended', 'prettier'],
   env: {
-    es2022: true,
-    node: true
+    es2022: true
   },
   parserOptions: {
     sourceType: 'module'
@@ -20,15 +21,7 @@ module.exports = {
           caseInsensitive: true,
           order: 'asc'
         },
-        'newlines-between': 'always',
-        pathGroups: [
-          {
-            group: 'external',
-            pattern: '@nestjs/**',
-            position: 'before'
-          }
-        ],
-        pathGroupsExcludedImportTypes: ['@nestjs']
+        'newlines-between': 'always'
       }
     ],
     'sort-imports': [
