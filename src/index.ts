@@ -1,27 +1,27 @@
 import fs from 'fs/promises';
 import path from 'path';
 
+import autoprefixer from 'autoprefixer';
 import { type BunPlugin } from 'bun';
-import postcss, { type AcceptedPlugin } from 'postcss';
+import cssnano from 'cssnano';
+import postcss from 'postcss';
+import tailwindcss from 'tailwindcss';
 
-type PostCSSPluginOptions = {
-  buildDir: string;
-  plugins?: AcceptedPlugin[];
-};
-
-const postcssPlugin = (options: PostCSSPluginOptions): BunPlugin => ({
-  name: 'bun-plugin-postcss',
+const tailwindcssPlugin = (): BunPlugin => ({
+  name: 'bun-plugin-tailwindcss',
   setup: (build) => {
     build.onLoad({ filter: /\.css$/ }, async (args) => {
-      const processor = postcss(options.plugins);
-      const outfile = path.resolve(options.buildDir, path.basename(args.path));
       const css = await fs.readFile(args.path, 'utf-8');
-      const result = await processor.process(css, { from: args.path, to: outfile });
+      const template = await fs.readFile(path.resolve(import.meta.dir, 'inject-styles.ts'), 'utf-8');
+      const processor = postcss([autoprefixer(), tailwindcss(), cssnano()]);
+      const result = await processor.process(css, { from: args.path });
+      const outfile = template.replace('{{ STYLES }}', result.css);
       return {
-        contents: result.css
+        contents: outfile,
+        loader: 'ts'
       };
     });
   }
 });
 
-export { postcssPlugin as default, type PostCSSPluginOptions };
+export default tailwindcssPlugin;

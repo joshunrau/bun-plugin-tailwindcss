@@ -1,1 +1,1 @@
-# bun-plugin-postcss
+# bun-plugin-tailwindcss
