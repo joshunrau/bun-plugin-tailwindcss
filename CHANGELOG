@@ -1,0 +1,12 @@
+# Changelog
+
+## [0.0.2] - 2023-09-29
+
+### Added
+- Example with React and SSR
+- Updated metadata in `package.json`
+
+## [0.0.1] - 2023-09-29
+
+### Added
+- Initial release
