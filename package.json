@@ -1,6 +1,6 @@
 {
   "name": "bun-plugin-tailwindcss",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Bun plugin to enable support for TailwindCSS",
   "keywords": [
     "bun",
