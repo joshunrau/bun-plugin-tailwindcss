@@ -4,6 +4,7 @@
   "description": "A Bun plugin to enable support for TailwindCSS",
   "keywords": [
     "bun",
+    "bun-plugin",
     "postcss",
     "tailwind",
     "tailwindcss"
