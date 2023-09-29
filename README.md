@@ -9,3 +9,7 @@ This is a Bun plugin that enables support for TailwindCSS. As custom CSS loaders
 ```shell
 bun add --dev bun-plugin-tailwindcss
 ```
+
+## Usage
+
+To enable the plugin, simply import it and add it to your build script. An example with React SRR is provided in the `example` directory.
