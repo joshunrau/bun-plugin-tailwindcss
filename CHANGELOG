@@ -2,6 +2,11 @@
 
 ## [0.0.3] - 2023-09-29
 
+### Fixed
+- Escape characters in CSS string
+
+## [0.0.3] - 2023-09-29
+
 ### Added
 - MIT license
 
