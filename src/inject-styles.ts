@@ -3,7 +3,7 @@
 
 const injectStyles = () => {
   const style = document.createElement('style');
-  style.textContent = `{{ STYLES }}`
+  style.textContent = String.raw`{{ STYLES }}`;
   document.head.appendChild(style);
 };
 
