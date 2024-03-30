@@ -1,3 +1,5 @@
+> :warning:&nbsp; This package is no longer maintained, since I have stopped using Bun because of the huge numbers of segfaults, which unfortuantely, will probably not be resolved any time soon, if history is any indication.
+
 # bun-plugin-tailwindcss
 
 ## About
